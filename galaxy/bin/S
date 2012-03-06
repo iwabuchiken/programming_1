@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pwd
+
+if [ "$1" = "" ]; then
+	ssh galaxy@183.181.0.54 -p 3843
+else
+	ssh ${1}@183.181.0.54 -p 3843
+fi

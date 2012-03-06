@@ -1,0 +1,114 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#dir=/home/kenb/workspace/ws_ubuntu_1/G20110601_164342/main.py
+#file=v1u13
+
+import sys
+import os
+import datetime
+import re
+
+path1 = os.path.realpath(os.path.dirname(__file__))
+path2 = os.path.realpath(os.path.dirname(path1))
+
+if os.path.isdir(path2 + "/LIB01") == False:
+  if os.path.isdir("/home/kenb/workspace/ws_ubuntu_1" + "/LIB01") == True:
+    path2 = "/home/kenb/workspace/ws_ubuntu_1"
+  else: path2 = "/var/www/cgi-bin"
+print "path2=", path2
+if os.path.isdir(path2 + "/LIB01"):
+  sys.path.append(path2)
+  import LIB01.bs # => works: 'LIB01.bs.get_soup_html(html)'
+  import LIB01.data
+  import LIB01.basics
+else:
+  print "LIB01 unable to import"
+
+def get_content_main(enc_type='utf-8', dir=''):
+  return """#!/usr/bin/python
+# -*- coding: %s -*-
+#dir=%s
+#file=v1p1
+
+# methods ========================
+def do_job():
+  pass
+
+# execute ========================
+if __name__ == '__main__':
+  pass
+
+""" % (enc_type, dir)
+
+def get_time_label2():
+  t = datetime.datetime.today()
+  t1 = [t.year, t.month, t.day, t.hour, t.minute, t.second]
+  t2 = [str(item) for item in t1]
+
+  for i in range(len(t2)):
+    if len(t2[i]) < 2: t2[i] = "0" + t2[i]
+      
+  return "".join(t2[:3]) + "_" + "".join(t2[3:])
+
+
+def start_project():
+  print "Syntax: startNBproject <directory>"
+  args = sys.argv
+
+  ans = raw_input('Create a project. Ok?[y/n]')
+
+  if ans.lower() == 'y':
+#    if len(args) < 3:
+    if len(args) < 2:
+      print "Please input one args"
+      exit(0)
+    else:
+      time_label = get_time_label2()
+      directory = str(args[1])
+      print directory #debug
+      if directory[0] == ".":
+        directory = re.sub("\.", os.getcwd(), directory, 1)
+      elif directory == "$":
+        directory = "/home/kenb/workspace/ws_ubuntu_1"
+      print directory #debug
+  else:
+    print "Ok."
+    exit(0)
+
+#  #02 modify the path
+#  print "directory[0]=", directory[0] #debug
+
+
+  #03 confirm
+  if os.getlogin() == 'galaxy':
+    command1 = "sudo mkdir %s/G%s" % (directory, time_label)
+    command2 = "sudo mkdir %s/G%s/STOR_G%s" % (directory, time_label, time_label)
+  else:
+    command1 = "mkdir %s/G%s" % (directory, time_label)
+    command2 = "mkdir %s/G%s/STOR_G%s" % (directory, time_label, time_label)
+  print "Command line will be: %s & %s" % (command1, command2)
+  ans = raw_input("Execute the command? [y/n]")
+
+  #04 if yes, execute
+  if ans.lower() == 'y':
+    os.system(command1)
+    os.system(command2)
+
+    _dir = "%s/G%s/main.py" % (directory, time_label)
+#    _dir = re.sub("\.", path2, _dir, 1)
+
+    f1 = file(_dir, "w")
+    f1.write(get_content_main(enc_type='utf-8', dir=_dir))
+
+    f2 = file("%s/G%s/UTIL.py" % (directory, time_label), "w")
+#    print command
+  else:
+    "You choose not to execute. Ok."
+    exit(0)
+
+if __name__ == '__main__':
+  start_project()
+#  t = get_time_label2()
+#  print type(t)
+#  print t
+

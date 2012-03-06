@@ -1,0 +1,9 @@
+echo [dirs]
+echo /home/galaxy/bin/
+echo sudo /etc/init.d/apache2 restart/
+echo /etc/php5/apache2/php.ini/
+echo cd /var/www/html/
+echo cd /var/www/cgi-bin/
+echo cd /var/www/html/G20111122_095324_linux_system_programming/G5_chp-06_20111205_153415/process/p0
+echo sudo find / \| grep \"\"
+

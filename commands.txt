@@ -1,0 +1,23 @@
+cd C:\workspaces\ws_ubuntu_1\G20111027_043828_etc_1
+
+dir STOR_G20111027_043828_etc_1\version*
+
+gcc -o main.exe main.c
+
+C:\workspaces\ws_ubuntu_1\susie347b\Susie.exe
+C:\windows\system32\mspaint.exe
+
+python configure.py
+mmake & main.exe
+
+[jar]============================
+util.py -vmain.c
+util.py -vmain.c,Makefile -J
+util.py -Lmain.c -T""
+
+[upload_g.py]======================
+upload_g.py
+main.c
+Makefile
+main.c,Makefile,counter.txt
+

@@ -1,0 +1,8 @@
+C	==>	chmod
+F	==>	find
+L	==>	ls -l
+LL	==>	ls -al
+S	==>	ssh
+M	==>	mysql
+D1	==>	show path to 'cgi-bin'
+

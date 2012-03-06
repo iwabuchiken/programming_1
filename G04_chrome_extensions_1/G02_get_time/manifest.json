@@ -1,0 +1,13 @@
+{
+  "name": "Get time label",
+  "version": "1.0",
+  "description": "Popup displays a current time label.",
+  "browser_action": {
+//    "default_icon": "icon.png",
+    "default_icon": "01.jpg",
+    "popup": "popup.html"
+  },
+  "permissions": [
+//    "http://api.flickr.com/"
+  ]
+}

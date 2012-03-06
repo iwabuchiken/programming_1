@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#ls -lp
+if [ "$1" = "" ]; then
+	echo "Please input one argument"
+	exit
+else
+	sudo chmod 755 $1
+fi

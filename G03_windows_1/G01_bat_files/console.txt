@@ -1,0 +1,2 @@
+pushd C:\workspaces\ws_programming_1\G03_windows_1\G01_bat_files
+dir

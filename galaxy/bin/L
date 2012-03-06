@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pwd
+#ls -lp
+if [ "$1" = "" ]; then
+	echo $1
+	echo ls -alF --color=always
+	ls -alF --color=always
+	#ls -lp
+else
+	echo $1
+	echo ls -alF $1 --color=always
+	ls -alF $1 --color=always
+	#ls -lp $1
+fi

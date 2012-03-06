@@ -1,0 +1,10 @@
+echo [execute]
+echo sudo /etc/init.d/apache2 restart
+echo vi /home/galaxy/bin/aa
+echo vi /home/galaxy/bin/ab
+echo sudo vi /etc/php5/apache2/php.ini
+echo sudo vi /etc/php5/cli/php.ini
+echo sudo cat /var/log/apache2/error.log
+echo sudo cat /var/log/apache2/error.log \| grep \"\"
+echo sudo vi /etc/apache2/sites-available/default
+

@@ -1,0 +1,30 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+How to use this function
+1. Example
+"""
+import os
+import sys
+
+#01 setup
+args = sys.argv
+if len(args) > 1:
+	current = args[1]
+else:
+	current = "."
+#print current
+
+#res = os.path.realpath(".")
+res = os.path.realpath(current)
+res_split = res.split("/")
+#print res_split
+
+
+#02 processing
+if "cgi-bin" in res_split:
+	index = res_split.index("cgi-bin")
+	print "/".join(res_split[index:])
+else:
+	print "The current path doesn't have 'cgi-bin'"

@@ -1,0 +1,18 @@
+/*
+ *  version=1.0
+ *  file=manifest.json
+ *  Modification Time	2011/04/25 17:05:14
+ *  Written: Ken Iwabuchi
+ */
+{
+  "name": "My First Extension",
+  "version": "1.0",
+  "description": "The first extension that I made.",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "popup.html"
+  },
+  "permissions": [
+    "http://api.flickr.com/"
+  ]
+}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pwd
+#ls -lp
+if [ "$1" = "" ]; then
+	echo $1
+	ls -lpa
+else
+	echo $1
+	ls -lpa $1
+fi

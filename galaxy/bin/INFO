@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pwd
+#ls -lp
+if [ "$1" = "" ]; then
+	vim ./_info
+else
+	vim ${1}/_info
+fi
