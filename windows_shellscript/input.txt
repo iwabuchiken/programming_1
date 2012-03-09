@@ -1,3 +1,0 @@
-tokens=aaaaa
-tokens=bbbb
-tokens=ccccc
