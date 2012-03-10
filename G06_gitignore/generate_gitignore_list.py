@@ -9,9 +9,27 @@
  * <Source>
  * 	1.
  ************************************"""
+import os.path
+#from multiprocessing import join
 import os
 import sys
+import inspect
 
+""" write_to_file()
+
+"""
+def write_to_file(new_path, ignore_files, file_name):
+#    file_out    = file(file_name, "a")
+    file_out    = file(file_name, "w")
+    for item in ignore_files:
+        name    = "*.%s" % item
+        string  = "/".join((new_path, name))
+        file_out.write(string + "\n")
+    #for item in ignore_files
+
+    """ close file  """
+    file_out.close()
+#//write_to_file()
 """
 Algorythm of the function "get_path()"
 	(Reminder)
@@ -49,14 +67,20 @@ def get_path(root_path, current_path):
 	 2. current_path_a
 	 3. new_path_a: array
 	 4. new_path: str
+         5. next_path_a: array  => list of dirs for recurse
 	 4. i: int		=>	index for root_path, current_path
 	 5. k: int	=>	index for new_path
+         6. file_out: file      => ouput file
+         7. file_name: str      => file name
+         8. ignore_files: array/str => files to be ignored
 	"""
-	root_path_a		= root_path.split("\\")
+	root_path_a	= root_path.split("\\")
 	current_path_a	= current_path.split("\\")
 	i						= 0
 	k						= 0
-	
+	file_name       = ".gitignore"
+        ignore_files    = ["obj", "tds", "o", "exe", "class", "mk"]
+
 	""" compare """
 	#for i in range(len(root_path_a)):
 	while (i < len(root_path_a) 
@@ -72,12 +96,26 @@ def get_path(root_path, current_path):
 	#debug
 	print "new_path_a=", new_path_a
 	print "new_path=", new_path
+
+        """ write to the file   """
+        write_to_file(new_path, ignore_files, file_name)
 	
-	""" get a new dir list	"""
-	print os.listdir(current_path)
-	
+#	""" get a new dir list	"""
+        
 	""" recurse the method	"""	
-	for item in os.listdir(current_path):
+#        next_path_a     = os.listdir(current_path)
+        next_path_a     = [x for x
+                in os.listdir(current_path)
+                if os.path.isdir(os.path.join(current_path, x))]
+#                if os.path.isdir(x)]
+
+        print "[LINE:%d]" % inspect.currentframe().f_lineno
+        print "current_path=", current_path
+	print "os.listdir(current_path)=", os.listdir(current_path)
+	print "next_path_a=", next_path_a
+
+#        for item in os.listdir(current_path):
+        for item in next_path_a:
 		print "\t", os.path.join(current_path, item)
 		get_path(root_path, os.path.join(current_path, item))
 	#//for item in os.listdir(current_path)		

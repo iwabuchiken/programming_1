@@ -1,4 +1,6 @@
-Git/
-Git/*
-Debug/
-Debug/*
+./STOR_G20111027_043828_etc_1/*.obj
+./STOR_G20111027_043828_etc_1/*.tds
+./STOR_G20111027_043828_etc_1/*.o
+./STOR_G20111027_043828_etc_1/*.exe
+./STOR_G20111027_043828_etc_1/*.class
+./STOR_G20111027_043828_etc_1/*.mk
