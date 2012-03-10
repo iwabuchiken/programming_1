@@ -1,19 +1,42 @@
 """************************************`
- * Q2.java
- * Author: Iwabuchi Ken				*
- * Date: 20120308_174545
- * Aim:								*
- * 	1.
- * <Usage>
- *	1. Run the program
- * <Source>
- * 	1.
- ************************************"""
+* generate_gitignore_list.py
+* Author: Iwabuchi Ken				*
+* Date: 20120308_174545
+* Aim:								*
+* 	1.
+* <Usage>
+*	1. Run the program
+* <Source>
+* 	1.
+************************************"""
 import os.path
 #from multiprocessing import join
 import os
 import sys
 import inspect
+
+def set_extension_data(file_name="extensions.dat"):
+    """ vars """
+    file_path   = os.path.join(os.path.dirname(__file__), file_name)
+#    f       = file(file_name)   #   data file
+    f       = file(file_path)   #   data file
+    exts    = list()            #   hold extensions
+
+    """ read lines """
+    line = f.readline()
+    while line:
+        exts.append(line.rstrip('\r\n'))
+        line = f.readline()
+    #//while (f.readline())
+
+    #debug
+    """ show exts """
+    print exts
+
+    """ return """
+    return exts
+
+#//set_extension_data()
 
 """ write_to_file()
 
@@ -79,7 +102,8 @@ def get_path(root_path, current_path):
 	i						= 0
 	k						= 0
 	file_name       = ".gitignore"
-        ignore_files    = ["obj", "tds", "o", "exe", "class", "mk"]
+#        ignore_files    = ["obj", "tds", "o", "exe", "class", "mk"]
+        ignore_files    = set_extension_data()
 
 	""" compare """
 	#for i in range(len(root_path_a)):
@@ -137,22 +161,26 @@ def get_path(root_path, current_path):
 #//get_path()
 
 if __name__ == '__main__':
-	""" variables """
-	root_path		= os.getcwd()
-	dirs_a			= os.listdir(root_path)
+    
+    #debug
+#    print "__file__=", __file__
+#    print os.path.dirname(__file__)
+#    sys.exit(0)
+
+    """ variables """
+    root_path		= os.getcwd()
+    dirs_a			= os.listdir(root_path)
+
+    """ get path """
+    print "root_path=", root_path
+    #print dirs_a
+
+    """ modify dirs_a """
+    dirs_a	= [x for x in dirs_a if os.path.isdir(x)]
+    for item in dirs_a:
+        get_path(os.getcwd(), os.path.abspath(item))
+        #print os.path.dirname(item)
+        #print os.path.abspath(item)
+    #//for item in dirs_a
 	
-	""" get path """
-	print "root_path=", root_path
-	#print dirs_a
-	
-	""" modify dirs_a """
-	dirs_a	= [x for x in dirs_a if os.path.isdir(x)]
-	for item in dirs_a:
-		get_path(os.getcwd(), os.path.abspath(item))
-		#print os.path.dirname(item)
-		#print os.path.abspath(item)
-	#//for item in dirs_a
-	
-	#get_path(os.getcwd(), os.getcwd() + r"\a\b\c")
-	
-	
+    #get_path(os.getcwd(), os.getcwd() + r"\a\b\c")
