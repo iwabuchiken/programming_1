@@ -1,3 +1,6 @@
+*.exe
+*.dat
+a/
 ./a/*.obj
 ./a/*.tds
 ./a/*.o

@@ -69,11 +69,12 @@ def write_to_file(new_path, ignore_files, file_name):
     file_out    = file(file_name, "a")
 #    file_out    = file(file_name, "w")
     for item in ignore_files:
-        name    = "*.%s" % item
+#        name    = "*.%s" % item
+        name    = "*%s" % item
         string  = "/".join((new_path, name))
         file_out.write(string + "\n")
     #for item in ignore_files
-
+    
     """ close file  """
     file_out.close()
 #//write_to_file()
@@ -139,7 +140,7 @@ def get_path(root_path, current_path):
 		#while (root_path_a[i] == current_path_a[i])
 	""" get a path string	"""
 	new_path_a		= current_path_a[(i - 1):]
-	new_path_a[0]	= "."
+#	new_path_a[0]	= "."
 	new_path			= "/".join(new_path_a)
 	#debug
 	#print "new_path_a=", new_path_a
@@ -189,11 +190,19 @@ def get_path(root_path, current_path):
 
 def set_up():
     """ variables """
-    root_path	= os.getcwd()           			#   the root dir
-    entries_a      = os.listdir(root_path)	#   the entries in the root
-    dirs_a	= [x for x in entries_a if os.path.isdir(x)]
-                                        					#   the dirs among the entries
-    git_file_name   = ".gitignore"		   	     #  .gitignore file
+    root_path	= os.getcwd()           	#   the root dir
+    entries_a   = os.listdir(root_path)	#   the entries in the root
+    omit_dirs_a = set_omit_dirs_data()  #   dirs to be omitted
+
+    """ prep a dirs list for ignore path """
+    dirs_a	= [x for x in entries_a if os.path.isdir(x)
+                    and not x in omit_dirs_a]   #   the dirs among the entries
+    git_file_name   = ".gitignore"      #  .gitignore file
+
+    #debug
+#    print "[LINE:%d]" % inspect.currentframe().f_lineno
+#    print "dirs_a=", dirs_a
+#    sys.exit(0)
 
     """ delete the existing file """
     if git_file_name in entries_a:
