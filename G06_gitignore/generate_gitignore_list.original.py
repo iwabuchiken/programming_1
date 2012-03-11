@@ -214,36 +214,17 @@ def set_up():
 #//set_up()
 
 def first_order():
-    root_path       = os.getcwd()       #   the root dir
-    entries_a   = os.listdir(root_path)	#   the entries in the root
-    git_file_name   = ".gitignore"      #   .gitignore file
-    ignore_files    = set_extension_data()
-    
-    """ delete the existing file """
-    if git_file_name in entries_a:
-        os.remove(os.path.join(root_path, git_file_name))
-
-    """ open the ignore file """
-    file_out    = file(git_file_name, "a")
-
-    """ write ignore files to the current dir """
-    for item in ignore_files:
-#        name    = "*.%s" % item
-        name    = "*%s" % item
-#        string  = "/".join((new_path, name))
-        file_out.write(name + "\n")
-    #for item in ignore_files
-
-    """ write top dirs """
-
-
-    """ close file  """
-    file_out.close()
-
+    pass
 #//first_order()
 
 if __name__ == '__main__':
-    """ write first order files """
-    first_order()
 
+    """ variables """
+    root_path, dirs_a   = set_up()
 
+    """ get path """
+
+    """ modify dirs_a """
+    
+    for item in dirs_a:
+        get_path(os.getcwd(), os.path.abspath(item))
