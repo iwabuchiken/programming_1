@@ -38,7 +38,31 @@ def set_extension_data(file_name="extensions.dat"):
 
 #//set_extension_data()
 
-""" write_to_file()
+def set_omit_dirs_data(file_name="omit.dat"):
+    """ vars """
+    file_path   = os.path.join(os.path.dirname(__file__), file_name)
+#    f       = file(file_name)   #   data file
+    f       = file(file_path)   #   data file
+    omit_dirs_a  = list()            #   hold extensions
+
+    """ read lines """
+    line = f.readline()
+    while line:
+        omit_dirs_a.append(line.rstrip('\r\n'))
+        line = f.readline()
+    #//while (f.readline())
+
+    #debug
+    """ show exts """
+    #print exts
+
+    """ return """
+    return omit_dirs_a
+
+#//def set_omit_dirs_data(file_name="extensions.dat")
+
+""" 
+write_to_file()
 
 """
 def write_to_file(new_path, ignore_files, file_name):
@@ -103,7 +127,7 @@ def get_path(root_path, current_path):
 	k						= 0
 	file_name       = ".gitignore"
 #        ignore_files    = ["obj", "tds", "o", "exe", "class", "mk"]
-        ignore_files    = set_extension_data()
+	ignore_files    = set_extension_data()
 
 	""" compare """
 	#for i in range(len(root_path_a)):
@@ -126,14 +150,22 @@ def get_path(root_path, current_path):
 	
 #	""" get a new dir list	"""
         
-	""" recurse the method	"""	
-#        next_path_a     = os.listdir(current_path)
+        """ recurse the method	"""	
+        omit_dirs_a = set_omit_dirs_data()
+        
+        #debug
+        print "[LINE:%d]" % inspect.currentframe().f_lineno
+        print "omit_dirs_a=", omit_dirs_a
+        
         next_path_a     = [x for x
                 in os.listdir(current_path)
-                if os.path.isdir(os.path.join(current_path, x))]
+                #if os.path.isdir(os.path.join(current_path, x))]
+                if os.path.isdir(os.path.join(current_path, x)) and
+                x not in omit_dirs_a]
 #                if os.path.isdir(x)]
 
-        #print "[LINE:%d]" % inspect.currentframe().f_lineno
+        print "[LINE:%d]" % inspect.currentframe().f_lineno
+        print "next_path_a=", next_path_a
         #print "current_path=", current_path
 	#print "os.listdir(current_path)=", os.listdir(current_path)
 	#print "next_path_a=", next_path_a
@@ -141,7 +173,7 @@ def get_path(root_path, current_path):
 #        for item in os.listdir(current_path):
         for item in next_path_a:
 		#print "\t", os.path.join(current_path, item)
-		get_path(root_path, os.path.join(current_path, item))
+			get_path(root_path, os.path.join(current_path, item))
 	#//for item in os.listdir(current_path)		
 	#print	
 	#new_path		= 
@@ -154,56 +186,31 @@ def get_path(root_path, current_path):
 	#print current_path_a[i:]
 	#print
 	"""
-	#debug
-	#print "root_path_a=", root_path_a
-	#print "current_path_a=", current_path_a
-	#print
-#//get_path()
 
 def set_up():
     """ variables """
-    root_path	= os.getcwd()           #   the root dir
-    entries_a      = os.listdir(root_path) #   the entries in the root
+    root_path	= os.getcwd()           			#   the root dir
+    entries_a      = os.listdir(root_path)	#   the entries in the root
     dirs_a	= [x for x in entries_a if os.path.isdir(x)]
-                                        #   the dirs among the entries
-    git_file_name   = ".gitignore"
+                                        					#   the dirs among the entries
+    git_file_name   = ".gitignore"		   	     #  .gitignore file
 
     """ delete the existing file """
     if git_file_name in entries_a:
         os.remove(os.path.join(root_path, git_file_name))
-    #//if ".gitignore" in entries_a
-
 
     """ return """
     return root_path, dirs_a
 #//set_up()
+
 if __name__ == '__main__':
-    
-    #debug
-#    print "__file__=", __file__
-#    print os.path.dirname(__file__)
-#    sys.exit(0)
 
     """ variables """
     root_path, dirs_a   = set_up()
-#    root_path		= os.getcwd()
-#    dirs_a			= os.listdir(root_path)
 
     """ get path """
-    #print "root_path=", root_path
-    #print dirs_a
 
     """ modify dirs_a """
-#    dirs_a	= [x for x in dirs_a if os.path.isdir(x)]
-    
-    #debug
-    #print "[LINE:%d]" % inspect.currentframe().f_lineno
-    #print "dirs_a=", dirs_a
     
     for item in dirs_a:
         get_path(os.getcwd(), os.path.abspath(item))
-        #print os.path.dirname(item)
-        #print os.path.abspath(item)
-    #//for item in dirs_a
-	
-    #get_path(os.getcwd(), os.getcwd() + r"\a\b\c")

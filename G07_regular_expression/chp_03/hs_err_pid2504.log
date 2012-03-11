@@ -1,0 +1,106 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (signature.cpp:308), pid=2504, tid=3328
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 6.0_25-b06
+# Java VM: Java HotSpot(TM) Client VM (20.0-b11 mixed mode, sharing windows-x86 )
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00307800):  JavaThread "Unknown thread" [_thread_in_vm, id=3328, stack(0x00970000,0x00d70000)]
+
+Stack: [0x00970000,0x00d70000],  sp=0x00d6f8b0,  free space=4094k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x13363a]
+V  [jvm.dll+0x12e59b]
+V  [jvm.dll+0x10fcc4]
+V  [jvm.dll+0xbc5b]
+V  [jvm.dll+0x8b26d]
+V  [jvm.dll+0x2633d]
+V  [jvm.dll+0x26d0f]
+V  [jvm.dll+0x26d6d]
+V  [jvm.dll+0x27626]
+V  [jvm.dll+0x279d5]
+V  [jvm.dll+0x27a69]
+V  [jvm.dll+0x27b2c]
+V  [jvm.dll+0x27baa]
+V  [jvm.dll+0x27d1b]
+V  [jvm.dll+0x27f59]
+V  [jvm.dll+0x6c593]
+V  [jvm.dll+0x6c96c]
+V  [jvm.dll+0xf9c1c]
+V  [jvm.dll+0x1184bb]
+V  [jvm.dll+0x9eba0]
+C  [javac.exe+0x1656]
+C  [javac.exe+0x20d9]
+C  [MSVCR71.dll+0x9565]  endthreadex+0xa0
+C  [kernel32.dll+0xb729]  GetModuleFileNameA+0x1ba
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00307800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=3328, stack(0x00970000,0x00d70000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00306a00] AdapterHandlerLibrary_lock - owner thread: 0x00307800
+
+Dynamic libraries:
+0x00400000 - 0x0040a000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\bin\javac.exe
+0x7c940000 - 0x7c9df000 	C:\WINDOWS\system32\ntdll.dll
+0x7c800000 - 0x7c933000 	C:\WINDOWS\system32\kernel32.dll
+0x6d010000 - 0x6d025000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\bin\jli.dll
+0x77d80000 - 0x77e29000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x77e30000 - 0x77ec3000 	C:\WINDOWS\system32\RPCRT4.dll
+0x77fa0000 - 0x77fb1000 	C:\WINDOWS\system32\Secur32.dll
+0x7c340000 - 0x7c396000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\bin\MSVCR71.dll
+0x00310000 - 0x00366000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\jre\bin\msvcr71.dll
+0x6d8a0000 - 0x6db4f000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\jre\bin\client\jvm.dll
+0x77cf0000 - 0x77d80000 	C:\WINDOWS\system32\USER32.dll
+0x77ed0000 - 0x77f19000 	C:\WINDOWS\system32\GDI32.dll
+0x76af0000 - 0x76b1b000 	C:\WINDOWS\system32\WINMM.dll
+0x762e0000 - 0x762fd000 	C:\WINDOWS\system32\IMM32.DLL
+0x60740000 - 0x60749000 	C:\WINDOWS\system32\LPK.DLL
+0x73f80000 - 0x73feb000 	C:\WINDOWS\system32\USP10.dll
+0x6d850000 - 0x6d85c000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\jre\bin\verify.dll
+0x6d3d0000 - 0x6d3ef000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\jre\bin\java.dll
+0x76ba0000 - 0x76bab000 	C:\WINDOWS\system32\PSAPI.DLL
+0x6d890000 - 0x6d89f000 	C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dapplication.home=C:\WORKS\PROGRAMS\Java\jdk1.6.0_25 -Xms8m -Xss4m -ea:com.sun.tools... 
+java_command: com.sun.tools.javac.Main -help
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\WORKS\PROGRAMS\Java
+PATH=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WORKS\PROGRAMS\Git\cmd;C:\WORKS\PROGRAMS\MinGW\bin;;C:\WORKS;C:\WORKS\PROGRAMS\Git\bin;C:\WORKS\WORKSPACES\G_nbp_new;C:\WORKS\PROGRAMS\Python266;C:\WORKS\PROGRAMS\Java;C:\WORKS\PROGRAMS\Java\jdk1.6.0_25\bin;C:\WORKS\PROGRAMS\MinGW\bin;C:\WORKS\PROGRAMS\borland\bcc55\Bin;C:\WORKS\PROGRAMS\borland\bcc55;C:\WORKS\PROGRAMS\MinGW;C:\WORKS\PROGRAMS\MinGW\bin;C:\WORKS\WORKSPACES\programming_1\G06_gitignore
+USERNAME=iwabuchiken
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 6, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows XP Build 2600 Service Pack 3
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 15 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 2086440k(533728k free), swap 4015148k(2446076k free)
+
+vm_info: Java HotSpot(TM) Client VM (20.0-b11) for windows-x86 JRE (1.6.0_25-b06), built on Apr 14 2011 01:04:32 by "java_re" with MS VC++ 7.1 (VS2003)
+
+time: Sun Mar 11 13:44:49 2012
+elapsed time: 0 seconds
+
