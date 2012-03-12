@@ -14,9 +14,14 @@
  */
 package chp_03;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mylib.STDLIB;
 
@@ -50,22 +55,79 @@ public class R_3_15_replace_all_matches_p205 {
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
 		/* variables			*/
-		String		fileName	= "abc";
+		String		fileNameIn	= "R_3-15_src.txt";	/* src file: contains a text	*/
+		String		fileNameOut	= "R_3-15_out.txt";	/* replaced text 				*/
+		
 		/* modify fileName		*/
-		fileName					= String.format(
+		fileNameIn					= String.format(
 				"%s/%s", 
 				new R_3_15_replace_all_matches_p205().
 					getClass().getPackage().getName(),
-				fileName);
+				fileNameIn);
+		fileNameOut					= String.format(
+				"%s/%s", 
+				new R_3_15_replace_all_matches_p205().
+					getClass().getPackage().getName(),
+				fileNameOut);
 		
-		FileWriter	fr				= STDLIB.getFileWriter(fileName);
+		/* get a BufferedWriter/Reader instance		*/
+		BufferedReader	br				= STDLIB.getBufferedReader(fileNameIn);
+		BufferedWriter	bw				= STDLIB.getBufferedWriter(fileNameOut);
+		
+		/* set up regex				*/
+		Pattern		regex				= Pattern.compile("cat");	/* regex patter		*/
+//		Matcher	regexMatcher	= regex.matcher(br.read());	/* matched object	*/		
+		Matcher	regexMatcher	= regex.matcher(STDLIB.readAllContent(br));	/* matched object	*/
+		
+		/* write to file					*/
+		try {
+			bw.write(regexMatcher.replaceAll("<cat>"));
+		} catch (IOException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+			System.exit(1);
+		}
+		
+		/* close streams			*/
+		try {
+			br.close();
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		try {
+			bw.close();
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		
+		//debug
+//		try {
+////			System.out.println(Class.forName("R_3_15_replace_all_matches_p205").toString());
+////			System.out.println("done");
+////			Class.forName("R_3_15_replace_all_matches_p205").newInstance().
+//		} catch (ClassNotFoundException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		} finally {
+//			System.exit(0);
+//		}
 		
 		/* processes			*/
-		if (fr != null) {
-			System.out.println("return=" + STDLIB.getFileWriter(fileName).toString());
-		} else {
-			System.out.println("return=null");
-		}//if (fr != null)		
+		
+		
+//		if (br != null) {
+//			System.out.println("return=" + STDLIB.getFileWriter(fileName).toString());
+//		} else {
+//			System.out.println("return=null");
+//		}//if (br != null)		
+		
+		
 	}//public static void main(String[] args)
 
+	public static void showMessage() {
+		System.out.println("Hi.");
+	}//public String elemType showMessage( paramName)
+	
 }
