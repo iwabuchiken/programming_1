@@ -17,11 +17,15 @@
  * <Description of the program>
  * 	1. 
  ************************************/
+#ifndef INCLUDE_STDIO_H
+#define INCLUDE_STDIO_H
+#include <stdio.h>
+#endif
 
 // prototypes ============================
 
 int is_digit(char string[]);
 int sum_of_array(int first, int last, int array[]);
-
+char* read_all(FILE* file);
 
 //==============EOF============================

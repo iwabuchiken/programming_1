@@ -92,6 +92,24 @@ int is_digit(char string[])
     
 }//int is_digit(char string[])
 
+char* read_all(FILE* fp)
+{
+    /* vars         */
+    //char*   content[] = "abcde";
+    char*   content[1028];   /* line read from the file  */
+    //int     num;             /* number of bytes read */
+    
+    /* read file    */
+    //num = fread(content, sizeof(content), 1, fp);
+    fread(content, sizeof(content), 1, fp);
+    //fgets((char*)content, sizeof(content), fp);
+    
+    //return content;
+    return (char*)content;
+    
+}//char* read_all(FILE* file)
+
+
 /*
 #ifdef D
     printf("[LINE:%d]", __LINE__);

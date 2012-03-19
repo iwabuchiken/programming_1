@@ -1,5 +1,15 @@
+Debug
+Debug/*
+gen-git.log
+log
+log/*
+STOR_G20111027_043828_etc_1
+STOR_G20111027_043828_etc_1/*
 *.tds
 *.obj
 *.exe
 *.class
-*.mk
+*.pyc
+*.pyd
+*.etc
+*.zip
